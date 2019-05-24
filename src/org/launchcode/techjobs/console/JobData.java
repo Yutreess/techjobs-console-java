@@ -58,11 +58,18 @@ public class JobData {
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
+        value = value.toLowerCase();
+
         for (HashMap<String, String> row : allJobs) {
-            for (Map.Entry job : row.entrySet()) {
-                if (job.getValue().toString().toLowerCase().contains(value.toLowerCase())) {
+            for (String term : row.values()) {
+                if (term.toLowerCase().contains(value)) {
                     jobs.add(row);
                 }
+                /*
+                else if (job.getValue().toString().toLowerCase().equals(value)) {
+                    jobs.add(row);
+                }
+                */
             }
             /*
             if (row.containsKey(value.toLowerCase())) {
@@ -96,7 +103,7 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
